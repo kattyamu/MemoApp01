@@ -7,6 +7,7 @@ import fontAwsome from '../../assets/fonts/fa-solid-900.ttf';
 const glyphMap = {
   pencil: '\uf303',
   plus: '\uf067',
+  check: '\uf00c',
 };
 const CustomIcon = createIconSet(glyphMap, 'FontAwsome', 'custom-icon-font.ttf');
 
