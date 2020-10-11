@@ -8,11 +8,11 @@ import { createStackNavigator } from 'react-navigation-stack';
 import * as firebase from 'firebase';
 
 // Optionally import the services that you want to use
-//import "firebase/auth";
-//import "firebase/database";
-//import "firebase/firestore";
-//import "firebase/functions";
-//import "firebase/storage";
+// import "firebase/auth";
+// import "firebase/database";
+import "firebase/firestore";
+// import "firebase/functions";
+// import "firebase/storage";
 
 // old
 // import firebase from 'firebase';
@@ -20,6 +20,7 @@ import * as firebase from 'firebase';
 import MemoListScreen from './src/screens/MemoListScreen';
 import MemoDetailScreen from './src/screens/MemoDetailScreen';
 import MemoEditScreen from './src/screens/MemoEditScreen';
+import MemoCreateScreen from './src/screens/MemoCreateScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import SingupScreen from './src/screens/SignupScreen';
 
@@ -45,6 +46,7 @@ const App = createStackNavigator({
   Home: { screen: MemoListScreen },
   MemoDetail: { screen: MemoDetailScreen },
   MemoEdit: { screen: MemoEditScreen },
+  MemoCreate: { screen: MemoCreateScreen },
 }, {
   defaultNavigationOptions: {
     headerTitle: 'Memot',

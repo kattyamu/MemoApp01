@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableHighlight } from 'react-native';
 import * as firebase from 'firebase/app';
-import 'firebase/auth';
+import "firebase/auth";
 
 class SignupScreen extends React.Component {
   state = {
