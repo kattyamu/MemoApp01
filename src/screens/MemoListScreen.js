@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import * as firebase from 'firebase/app';
 
 import MemoList from '../components/MemoList';
@@ -11,21 +11,21 @@ class MemoListScreen extends React.Component {
   }
 
   componentDidMount() {
-    const currentUser = firebase.auth();
     const db = firebase.firestore();
+    const { currentUser } = firebase.auth();
     db.collection(`users/${currentUser.uid}/memos`)
       .get()
       .then((querySnapshot) => {
         const memoList = [];
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-          memoList.push(doc.data());
+          // console.log(doc);
+          memoList.push({ ...doc.data(), key:doc.id });
         });
         this.setState({ memoList });
         // this.setState({ memoList: memoList });
       })
-      .catch(function(error) {
+      .catch((error) => {
           console.log("Error getting documents: ", error);
       });
   }
