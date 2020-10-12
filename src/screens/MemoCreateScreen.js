@@ -19,6 +19,7 @@ class MemoCreateScreen extends React.Component {
     })
       .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);
+        this.props.navigation.goBack();
       })
       .catch((error) => {
         console.error("Error adding document: ", error);
