@@ -18,7 +18,7 @@ class MemoEditScreen extends React.Component {
     const { params } = this.props.navigation.state;
     this.setState({
       body: params.memo.body,
-      key: params.memo.key
+      key: params.memo.key,
     });
   }
 
@@ -27,13 +27,26 @@ class MemoEditScreen extends React.Component {
 
     const db = firebase.firestore();
     const { currentUser } = firebase.auth();
+    // returnMemo に渡すので new Date() ではなくて firestore の Timestamp 型を直接使う
+    const newDate = firebase.firestore.Timestamp.now();
+
     console.log(this.state);
+  
     db.collection(`users/${currentUser.uid}/memos`).doc(this.state.key)
       .update({
         body: this.state.body,
+        createdOn: newDate,
       })
       .then(() => {
-        console.log('Success!');
+        this.setState({ body: this.state.body }); // WORKAROUND: bodyもここで更新しておく
+        const { navigation } = this.props;
+        navigation.state.params.returnMemo({
+          body: this.state.body,
+          key: this.state.key,
+          createdOn: newDate,
+        });
+        navigation.goBack();
+        // console.log('Success!');
       })
       .catch((error) => {
         console.log(error);
