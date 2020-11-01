@@ -6,8 +6,10 @@ import 'firebase/auth';
 
 class LoginScreen extends React.Component {
   state = {
-    email: 'user1@example.com',
-    password: 'password',
+    email: '',
+    // email: 'user1@example.com',
+    password: '',
+    // password: 'password',
   }
 
   // handleChangeText(text) {
